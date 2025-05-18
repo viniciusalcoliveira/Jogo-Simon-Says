@@ -151,3 +151,59 @@ h1 {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+/* Ajustes básicos para telas pequenas */
+@media (max-width: 480px) {
+  body {
+    height: auto; /* para não cortar em telas pequenas */
+    padding: 20px 10px;
+  }
+
+  #game {
+    grid-template-columns: repeat(2, 120px);
+    grid-template-rows: repeat(2, 120px);
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .btn {
+    border-radius: 16px;
+    box-shadow: 0 0 8px #000;
+  }
+
+  #start-btn, #retry-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+    border-radius: 25px;
+    box-shadow: 0 0 8px #00bfff;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  #scoreboard {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  #message {
+    font-size: 1rem;
+    min-height: 25px;
+    margin-bottom: 15px;
+  }
+
+  .game-over-box {
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #ff6b6b;
+  }
+
+  .game-over-box h2 {
+    font-size: 1.6rem;
+  }
+
+  .game-over-box p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+}
