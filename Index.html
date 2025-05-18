@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jogo Simon Says - Clássico</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <h1>Simon Says - Clássico</h1>
+  <div id="scoreboard">Pontuação: 0</div>
+  <div id="message"></div>
+
+  <div id="game">
+    <div id="green" class="btn"></div>
+    <div id="red" class="btn"></div>
+    <div id="yellow" class="btn"></div>
+    <div id="blue" class="btn"></div>
+  </div>
+
+  <button id="start-btn">Começar</button>
+
+  <!-- Tela de Game Over -->
+  <div id="game-over-screen">
+    <div class="game-over-box">
+      <h2>Game Over</h2>
+      <p id="final-score">Sua pontuação: 0</p>
+      <button id="retry-btn">Tentar novamente</button>
+    </div>
+  </div>
+
+  <!-- Rodapé com créditos -->
+  <footer style="text-align: center; margin-top: 40px; font-family: 'Poppins', sans-serif; font-size: 14px; color: #777;">
+    Desenvolvido por Vinicius Oliveira 💻
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
