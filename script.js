@@ -1,10 +1,38 @@
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+ const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const frequencies = {
       green: 329.63,
       red: 261.63,
       yellow: 220,
       blue: 164.81
     };
+
+    const soundBuffers = {};
+
+    function createSound(color) {
+      const duration = 0.3;
+      const sampleRate = audioCtx.sampleRate;
+      const length = sampleRate * duration;
+      const buffer = audioCtx.createBuffer(1, length, sampleRate);
+      const data = buffer.getChannelData(0);
+      const freq = frequencies[color];
+
+      for (let i = 0; i < length; i++) {
+        data[i] = Math.sin(2 * Math.PI * freq * i / sampleRate) * 0.3;
+      }
+
+      soundBuffers[color] = buffer;
+    }
+
+    function playSound(color) {
+      const source = audioCtx.createBufferSource();
+      source.buffer = soundBuffers[color];
+      source.connect(audioCtx.destination);
+      source.start();
+    }
+
+    for (let color in frequencies) {
+      createSound(color);
+    }
 
     const buttons = {
       green: document.getElementById('green'),
@@ -28,18 +56,6 @@ const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    function playSound(color) {
-      const oscillator = audioCtx.createOscillator();
-      const gainNode = audioCtx.createGain();
-      oscillator.frequency.value = frequencies[color];
-      oscillator.type = 'sine';
-      oscillator.connect(gainNode);
-      gainNode.connect(audioCtx.destination);
-      oscillator.start();
-      gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-      oscillator.stop(audioCtx.currentTime + 0.3);
     }
 
     async function flashButton(color) {
